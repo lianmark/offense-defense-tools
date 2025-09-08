@@ -5,6 +5,7 @@
 # Date Published: 09/08/2025
 # This is my first ever complex project.
 # For full transparency, around 10–15% of the code was AI-generated, but I fully understand all of it.
+# get_ram and get_cpu in the if statement should be modified by user
 import psutil as ps   
 import win32api 
 import time   
@@ -29,7 +30,7 @@ while True:
     now_ms = win32api.GetTickCount()     
     idle_seconds = (now_ms - last_input_ms) // 1000           
     
-    if idle_seconds > 2:
+    if idle_seconds > 60:
         for pid in ps.pids():                          
             if pid not in procs:                               
                 try:                     
@@ -44,7 +45,7 @@ while True:
             if not ps.pid_exists(pid):
                 procs.pop(pid) # removing the current dead pid
 
-        if get_cpu > 2 or get_ram > 2:
+        if get_cpu > 20 and get_ram > 60:
             if initial_create is False:
              with open ("C:\\Users\\" +username+ "\\Desktop\\Botnet_logs\\logs.txt", "a") as f:                
                  f.write(str(datetime.datetime.now()) + " Alert: High resource usage detected\nCPU: " + str(get_cpu) + "%  RAM: " +str(get_ram) + "\nAction: Investigation started\n--------------------------------------------------------------------------\n" )
