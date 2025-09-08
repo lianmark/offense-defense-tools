@@ -1,5 +1,5 @@
 # This is an unfinished & unoptimized project – running it may cause high CPU usage and significantly slow down your computer depends on your cpu.
-# Make sure to delete logs.txt after some time, as running it for a long period may take up unnecessary space.
+# Since its Demo and unfinished code - code will abort after logs.txt reach more than 50MB to prevent space cost, feel free to change or remove it
 # Compatible with Windows 10/11 only. Linux and other operating systems may encounter issues running this code.
 # Created by Lian M
 # Date Published: 09/08/2025
@@ -17,20 +17,25 @@ import os
 initial_create = False 
 get_validated = False
 total_ip_port = 0
-
+Iterations = 0
 procs = {}
+passed_initial_iteration = False
 
 username = os.getenv("username")
 os.makedirs("C:\\Users\\"+username+"\\Desktop\\Botnet_logs", exist_ok=True)
+
     
 while True:
+    
     get_ram = ps.virtual_memory().percent 
     get_cpu = ps.cpu_percent(interval=1)      
     last_input_ms = win32api.GetLastInputInfo()     
     now_ms = win32api.GetTickCount()     
-    idle_seconds = (now_ms - last_input_ms) // 1000           
-    
-    if idle_seconds > 60:
+    idle_seconds = (now_ms - last_input_ms) // 1000
+      
+    if idle_seconds > 2:
+        if passed_initial_iteration is True:       
+         Iterations = Iterations+1 
         for pid in ps.pids():                          
             if pid not in procs:                               
                 try:                     
@@ -45,7 +50,7 @@ while True:
             if not ps.pid_exists(pid):
                 procs.pop(pid) # removing the current dead pid
 
-        if get_cpu > 20 and get_ram > 60:
+        if get_cpu > 2 and get_ram > 2:
             if initial_create is False:
              with open ("C:\\Users\\" +username+ "\\Desktop\\Botnet_logs\\logs.txt", "a") as f:                
                  f.write(str(datetime.datetime.now()) + " Alert: High resource usage detected\nCPU: " + str(get_cpu) + "%  RAM: " +str(get_ram) + "\nAction: Investigation started\n--------------------------------------------------------------------------\n" )
@@ -81,7 +86,8 @@ while True:
                         if "Valid" in check_output:
                              get_validated = True
                          
-                        with open ("C:\\Users\\" +username+ "\\Desktop\\Botnet_logs\\logs.txt", "a") as f: 
+                        with open ("C:\\Users\\" +username+ "\\Desktop\\Botnet_logs\\logs.txt", "a") as f:
+                         f.write("Iterations:    " + str(Iterations)+ "\n") 
                          f.write("Path:      " + str(os.path.dirname(exe_path)) +"\ \n")
                          f.write("Name:         " + str(get_name) + "\n")
                          f.write("CPU:          " + str(current_pid_cpu) + "%" + "\n")
@@ -91,11 +97,18 @@ while True:
                           total_ip_port = total_ip_port+1
                           f.write("Connected to: " + str(remote_ip) + " : " + str(remote_port) +" -> "+ service_str + "\n")
                           f.write("Number of Unique IP:Port Connections Detected: "+ str(total_ip_port) +"\n")
-                         f.write("--------------------------------------------------------------------------\n\n\n\n")    
+                         f.write("--------------------------------------------------------------------------\n\n\n\n")
+                         
+                         log_file_size = os.path.getsize("C:\\Users\\"+username+"\\Desktop\\Botnet_logs\logs.txt")
+                         if log_file_size / (1024 * 1024) > 50:
+                             break
+                         
+                           
                     get_validated = False     
 
                 except (ps.NoSuchProcess, ps.AccessDenied, ps.ZombieProcess):                                 
-                    pass 
+                    pass
+        passed_initial_iteration = True      
             
     else:         
         procs.clear()  
