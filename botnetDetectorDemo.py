@@ -1,4 +1,5 @@
 # This is an unfinished & unoptimized project – running it may cause high CPU usage and significantly slow down your computer depends on your cpu.
+# Make sure to delete logs.txt after some time, as running it for a long period may take up unnecessary space.
 # Compatible with Windows 10/11 only. Linux and other operating systems may encounter issues running this code.
 # Created by Lian M
 # Date Published: 09/08/2025
