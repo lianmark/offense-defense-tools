@@ -1,4 +1,4 @@
-# This is an unfinished and unoptimized project – running it may cause high CPU usage and significantly slow down your computer.
+# This is an unfinished & unoptimized project – running it may cause high CPU usage and significantly slow down your computer depends on your cpu.
 # Compatible with Windows 10/11 only. Linux and other operating systems may encounter issues running this code.
 # Created by Lian M
 # Date Published: 09/08/2025
