@@ -1,10 +1,10 @@
-# This is an unfinished & unoptimized project – running it may cause high CPU usage and significantly slow down your computer depends on your cpu.
+# This is a work-in-progress project that has not been fully optimized – running it may cause high CPU usage and significantly slow down your computer depends on your cpu.
 # Since its Demo and unfinished code - code will abort after logs.txt reach more than 50MB to prevent space cost, feel free to change or remove it
 # Compatible with Windows 10/11 only. Linux and other operating systems may encounter issues running this code.
 # Created by Lian M
 # Date Published: 09/08/2025
 # This is my first ever complex project.
-# For full transparency, around 10–15% of the code was AI-generated, but I fully understand all of it.
+# For full transparency - around 25–35% of the code was AI-assisted while I was getting familiar with some libraries. However, I have thoroughly reviewed it and fully understand all of it.
 # get_ram and get_cpu in the if statement should be modified by user
 import psutil as ps   
 import win32api 
