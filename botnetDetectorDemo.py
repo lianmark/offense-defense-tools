@@ -1,18 +1,27 @@
+# This is an unfinished/unoptimized project – running it may cause high CPU usage in result drastically slow your Computer.
+# Compatible with Windows 10/11 only. Linux and other operating systems may encounter issues running this code.
+# Created by Lian M
+# Date Published: 09/08/2025
+# This is my first ever complex project.
+# For full transparency, around 10–15% of the code was AI-generated, but I fully understand all of it.
 import psutil as ps   
 import win32api 
 import time   
 import datetime 
 import subprocess as sb
-import hashlib
-
+import socket
+import os
+   
 initial_create = False 
-last_action = datetime.datetime.now() 
-procs = {}
 get_validated = False
- 
+total_ip_port = 0
 
+procs = {}
+
+username = os.getenv("username")
+os.makedirs("C:\\Users\\"+username+"\\Desktop\\Botnet_logs", exist_ok=True)
+    
 while True:
-    current_time = datetime.datetime.now()
     get_ram = ps.virtual_memory().percent 
     get_cpu = ps.cpu_percent(interval=1)      
     last_input_ms = win32api.GetLastInputInfo()     
@@ -20,7 +29,6 @@ while True:
     idle_seconds = (now_ms - last_input_ms) // 1000           
     
     if idle_seconds > 2:
-        print("Monitoring...")
         for pid in ps.pids():                          
             if pid not in procs:                               
                 try:                     
@@ -36,9 +44,10 @@ while True:
                 procs.pop(pid) # removing the current dead pid
 
         if get_cpu > 2 or get_ram > 2:
-            with open (r"C:\Users\PC\Desktop\Artificial_Intelligence_Python_Lessons\Projects\logs.txt", "a") as f:                
-                f.write(str(datetime.datetime.now()) + " Alert: High resource usage detected\nCPU: " + str(get_cpu) + "%  RAM: " +str(get_ram) + "\nAction: Investigation started\n--------------------------------------------------------------------------\n" )
-            
+            if initial_create is False:
+             with open ("C:\\Users\\" +username+ "\\Desktop\\Botnet_logs\\logs.txt", "a") as f:                
+                 f.write(str(datetime.datetime.now()) + " Alert: High resource usage detected\nCPU: " + str(get_cpu) + "%  RAM: " +str(get_ram) + "\nAction: Investigation started\n--------------------------------------------------------------------------\n" )
+                 initial_create = True
             for pid in procs:               
                 try: 
                     connections = procs[pid].connections(kind="inet")
@@ -47,7 +56,13 @@ while True:
                     for conn in connections:
                         if conn.raddr:
                             remote_ip = conn.raddr.ip
-                            remote_port = conn.raddr.port                
+                            remote_port = conn.raddr.port 
+                            try: 
+                                service = socket.getservbyport(remote_port)
+                                service_str = service.upper() + " (standard port)"
+                            except OSError:
+                                service_str = "Unknown_Port_ERROR"
+                                               
                     current_pid_cpu = procs[pid].cpu_percent(None) 
                     current_pid_ram = procs[pid].memory_info().rss / (1024*1024)                             
                     get_name = procs[pid].name()
@@ -56,10 +71,7 @@ while True:
                      
                     if not exe_path or exe_path.strip() == "":
                         continue  # skip this process only (no exe path), move on to the next pid in the loop
-                    # print("we here")
-                    # print("we here0.5")
                     if current_pid_cpu > 0 and get_ram >= 1:
-                        print("we here2")
                         check = sb.run(["powershell", "-Command", "Get-AuthenticodeSignature '" + exe_path + "'"],
                         capture_output=True, text=True) 
                         check_output = check.stdout
@@ -67,24 +79,22 @@ while True:
                         if "Valid" in check_output:
                              get_validated = True
                          
-                        with open (r"C:\Users\PC\Desktop\Artificial_Intelligence_Python_Lessons\Projects\logs.txt", "a") as f:
-                         print("we here3")
-                         f.write("Process:      " + str(exe_path) + "\n")
+                        with open ("C:\\Users\\" +username+ "\\Desktop\\Botnet_logs\\logs.txt", "a") as f: 
+                         f.write("Path:      " + str(os.path.dirname(exe_path)) +"\ \n")
+                         f.write("Name:         " + str(get_name) + "\n")
                          f.write("CPU:          " + str(current_pid_cpu) + "%" + "\n")
                          f.write("RAM:          " + str(current_pid_ram) + " MB" + "\n")
                          f.write("Signature:    " + str(get_validated) + "\n")  
                          if remote_ip not in ("127.0.0.1", "::1") and remote_port is not None and remote_ip is not None:
-                          f.write("Connected to: " + str(remote_ip) + ": " + str(remote_port) + "\n")
-                         f.write("--------------------------------------------------------------------------\n")    
+                          total_ip_port = total_ip_port+1
+                          f.write("Connected to: " + str(remote_ip) + " : " + str(remote_port) +" -> "+ service_str + "\n")
+                          f.write("Number of Unique IP:Port Connections Detected: "+ str(total_ip_port) +"\n")
+                         f.write("--------------------------------------------------------------------------\n\n\n\n")    
                     get_validated = False     
 
                 except (ps.NoSuchProcess, ps.AccessDenied, ps.ZombieProcess):                                 
                     pass 
             
-    else:
-        print("Not idle...")          
+    else:         
         procs.clear()  
         time.sleep(1)       
-        # print("Stopping Monitor Mode, User Is Not Idle!")
-        if get_cpu > 40 or get_ram > 58:
-            break
