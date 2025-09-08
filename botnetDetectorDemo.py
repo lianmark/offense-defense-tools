@@ -1,4 +1,5 @@
 # This is a work-in-progress project that has not been fully optimized – running it may cause high CPU usage and significantly slow down your computer depends on your cpu.
+# This demo project monitors CPU and RAM usage. The logs.txt file records resource usage and details of network connections made by running processes.
 # Since its Demo and unfinished code - code will abort after logs.txt reach more than 50MB to prevent space cost, feel free to change or remove it
 # Compatible with Windows 10/11 only. Linux and other operating systems may encounter issues running this code.
 # Created by Lian M
