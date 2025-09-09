@@ -1,5 +1,6 @@
+# Note: This code is unfinished. Some lines and functions may be incomplete or mixed in purpose.  
 # For full transparency – this code is approximately 40–50% AI-generated.  
-# Purpose: to gain familiarity with intrusion detection system (IDS) tools for personal learning and experience.  
+# Purpose: to gain familiarity with intrusion detection system (IDS) tools for personal learning and experience, additionally to observe and understand how actual network packets look.  
 # Code Published: 09/09/2025  
 # Description: This code detects if someone is running Nmap against your machine.  
 # Method: It captures inbound packets and checks whether the number of packets 
