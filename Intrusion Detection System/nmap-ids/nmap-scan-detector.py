@@ -1,3 +1,4 @@
+# Tested
 # Transparency: approximately 40–50% of this code was AI-assisted.
 # Status: Work in progress — some lines/functions may be incomplete or mixed in purpose.
 #
