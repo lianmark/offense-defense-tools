@@ -36,3 +36,5 @@ for con in connections:
                 f.write("Destination: " + str(get_ip) + " " + str(get_port)+ "\n")
                 f.write("Process: "+ str(process_name)+ "\n")
                 f.write("Status: " + str(get_status)+ "\n\n\n\n")
+                print("hello world()")
+                print("sdfkoisdfk")
