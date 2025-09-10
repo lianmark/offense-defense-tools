@@ -9,10 +9,14 @@
 #  WARNING: This code may consume significant CPU due to the 
 #           continuous capture loop and high iteration counts.
 # ================================================================
+################# Known bugs:
+# - Firewall won't block hacker's connection (in and out bound)
 import psutil as ps
 from scapy.all import *
 import pydivert as pd 
 import time
+import subprocess
+
 
 capture_uniqe_ip = "0.0.0.0"
 connections = ps.net_connections(kind='inet')
@@ -21,6 +25,10 @@ translate_protocol = "ERROR_PROTOCOL_NAME"
 PORTS_SCANNED = []
 IP_CAPTURED = []
 CAPTURED_ATTACKERS = {}
+STOP_CAPTURE = False
+
+username = os.getenv("username")
+os.makedirs("C:\\Users\\"+username+"\\Desktop\\\Artificial_Intelligence_Python_Lessons\\Projects\\Intrusion Detection System\\", exist_ok=True)
 
 def check_existing_connections(connections):
     for con in connections:
@@ -46,6 +54,8 @@ START_TIME = time.time()
 
 with pd.WinDivert("(tcp or udp) and inbound") as capture:
     for packet in capture:
+        if STOP_CAPTURE:
+            break
     
         if packet.tcp:
             TCP_NOW_TIME = time.time()
@@ -64,7 +74,7 @@ with pd.WinDivert("(tcp or udp) and inbound") as capture:
                     print("\n\n\nALERT: Possible SYN Flood Attack Detected!\n")
                     print("Possible Nmap-Scan is being prepormed on your system to gather information about open ports and services running on your system.\n")
                     print("Source IP:", CAPTURED_ATTACKERS[TCP_SRC])
-                    break 
+                    STOP_CAPTURE = True
         
         if packet.udp:
             UDP_NOW_TIME = time.time()
@@ -83,10 +93,20 @@ with pd.WinDivert("(tcp or udp) and inbound") as capture:
                 print("\n\nALERT: Possible DDoS Flood Attack Detected!\n")
                 print("DDoS attack is being prepormed on your system to overwhelm your network or system resources, making it unavailable to legitimate users.\n")
                 print("Source IP:", CAPTURED_ATTACKERS[UDP_SRC])
-                break 
+                with open ("C:\\Users\\" +username+ "\\Desktop\\\Artificial_Intelligence_Python_Lessons\\Projects\\Intrusion Detection System\\IDS-logs.txt", "a") as f:                
+                    f.write("\n\n\nSource IP:" + str(CAPTURED_ATTACKERS[UDP_SRC]))
+                    block = "8.8.8.8"
+                subprocess.run([
+                    "powershell",
+                    "-Command",
+                    "netsh advfirewall firewall add rule name=\"Block_"+CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]+"\" dir=out action=block remoteip=" + blCAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]
+                    ])
+                subprocess.run([
+                    "powershell",
+                    "-Command",
+                    "netsh advfirewall firewall add rule name=\"Block_"+CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]+"\" dir=in action=block remoteip=" + CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]
+                    ])
+                print(CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"])
+                STOP_CAPTURE = True 
 
-username = os.getenv("username")
-os.makedirs("C:\\Users\\"+username+"\\Desktop\\\Artificial_Intelligence_Python_Lessons\\Projects\\Intrusion Detection System\\", exist_ok=True)
 
-with open ("C:\\Users\\" +username+ "\\Desktop\\\Artificial_Intelligence_Python_Lessons\\Projects\\Intrusion Detection System\\IDS-logs.txt", "a") as f:                
-    f.write("\n\n\nSource IP:" + str(CAPTURED_ATTACKERS[UDP_SRC]))
