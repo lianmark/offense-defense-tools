@@ -1,3 +1,14 @@
+# ================================================================
+#  Nmap + DDoS Detector (IDS Prototype)
+#  Published: 2025-09-10
+#  Contribution: ~60% of the logic and structure was CO-CREATED 
+#                with AI guidance (assistant).
+#  NOTE: The AI assistant did NOT provide a single, finished script.
+#        I wrote/assembled this program myself and iterated on it;
+#        the AI only provided guidance, snippets, and debugging tips
+#  WARNING: This code may consume significant CPU due to the 
+#           continuous capture loop and high iteration counts.
+# ================================================================
 import psutil as ps
 from scapy.all import *
 import pydivert as pd 
