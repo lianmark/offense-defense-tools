@@ -9,8 +9,6 @@
 #  WARNING: This code may consume significant CPU due to the 
 #           continuous capture loop and high iteration counts.
 # ================================================================
-################# Known bugs:
-# - Firewall won't block hacker's connection (in and out bound)
 import psutil as ps
 from scapy.all import *
 import pydivert as pd 
