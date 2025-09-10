@@ -55,56 +55,85 @@ with pd.WinDivert("(tcp or udp) and inbound") as capture:
         if STOP_CAPTURE:
             break
     
+    
         if packet.tcp:
+            ## TO-DO: Implement whole block into a function
+            
             TCP_NOW_TIME = time.time()
+            
             print(packet.src_addr,":",packet.src_port, " -> ", packet.dst_addr,":", packet.tcp.dst_port , " ", translate_protocol, " -> ", "[SYN] Seq=",packet.tcp.seq_num, " Ack=", packet.tcp.ack_num)
+            
             global TCP_SRC
+            
             TCP_SRC = packet.src_addr
+            
             dst_port = packet.tcp.dst_port # port being scanned
+            
+            
             if TCP_SRC not in CAPTURED_ATTACKERS:
                 CAPTURED_ATTACKERS[TCP_SRC] = {"ports": set(), "count": 0, "start_time": time.time(), "attacker_ip": TCP_SRC}
-        
+            
+            
             if packet.tcp.syn:
                 CAPTURED_ATTACKERS[TCP_SRC]["ports"].add(dst_port)
                 CAPTURED_ATTACKERS[TCP_SRC]["count"] += 1          
             # Nmap-scan capture logic
+            
+            
             if  (TCP_NOW_TIME - CAPTURED_ATTACKERS[TCP_SRC]["start_time"]) >=5 and len(CAPTURED_ATTACKERS[TCP_SRC]["ports"]) > 100:
                     print("\n\n\nALERT: Possible SYN Flood Attack Detected!\n")
                     print("Possible Nmap-Scan is being prepormed on your system to gather information about open ports and services running on your system.\n")
                     print("Source IP:", CAPTURED_ATTACKERS[TCP_SRC])
                     STOP_CAPTURE = True
-        
+            
         if packet.udp:
+            ## TO-DO: Implement whole block into a function
+            
             UDP_NOW_TIME = time.time()
             global UDP_SRC
             UDP_SRC = packet.src_addr
             dst_port = packet.udp.dst_port # port being scanned
+            
+            
             if UDP_SRC not in CAPTURED_ATTACKERS:
                 CAPTURED_ATTACKERS[UDP_SRC] = {"ports": set(), "count": 0, "start_time": time.time(), "attacker_ip": UDP_SRC}
+                
             print(packet.src_addr, ":", packet.src_port, " -> ",packet.dst_addr, ":", packet.udp.dst_port," Payload size=", len(packet.udp.payload))
+            
             payload_size = len(packet.udp.payload)
+            
             if payload_size == 1490 or payload_size > 1000:
                 CAPTURED_ATTACKERS[UDP_SRC]["ports"].add(dst_port)
                 CAPTURED_ATTACKERS[UDP_SRC]["count"] += 1  
-        # Ddos-flood capture logic
+                
+                
+                
+            # Ddos-flood capture logic
             if  (UDP_NOW_TIME - CAPTURED_ATTACKERS[UDP_SRC]["start_time"]) >= 5 and CAPTURED_ATTACKERS[UDP_SRC]["count"] > 1500:
                 print("\n\nALERT: Possible DDoS Flood Attack Detected!\n")
                 print("DDoS attack is being prepormed on your system to overwhelm your network or system resources, making it unavailable to legitimate users.\n")
                 print("Source IP:", CAPTURED_ATTACKERS[UDP_SRC])
+                
                 with open ("C:\\Users\\" +username+ "\\Desktop\\\Artificial_Intelligence_Python_Lessons\\Projects\\Intrusion Detection System\\IDS-logs.txt", "a") as f:                
                     f.write("\n\n\nSource IP:" + str(CAPTURED_ATTACKERS[UDP_SRC]))
-                    block = "8.8.8.8"
+                    
+                    block = "2a03:2880:f142:182:face:b00c:0:25de"
                 subprocess.run([
                     "powershell",
                     "-Command",
-                    "netsh advfirewall firewall add rule name=\"Block_"+CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]+"\" dir=out action=block remoteip=" + CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]
+                    "netsh advfirewall firewall add rule name=\"Block_"+block+"\" dir=out action=block remoteip="+block
                     ])
+                
                 subprocess.run([
                     "powershell",
                     "-Command",
-                    "netsh advfirewall firewall add rule name=\"Block_"+CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]+"\" dir=in action=block remoteip=" + CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]
+                    "netsh advfirewall firewall add rule name=\"Block_"+block+"\" dir=in action=block remoteip="+block
                     ])
+                
                 print(CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"])
+                
                 STOP_CAPTURE = True 
 
 
+
+                ## TO-DO: ADD brute-force detection logic for ssh, ftp, smtp etc:
