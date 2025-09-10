@@ -99,7 +99,7 @@ with pd.WinDivert("(tcp or udp) and inbound") as capture:
                 subprocess.run([
                     "powershell",
                     "-Command",
-                    "netsh advfirewall firewall add rule name=\"Block_"+CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]+"\" dir=out action=block remoteip=" + blCAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]
+                    "netsh advfirewall firewall add rule name=\"Block_"+CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]+"\" dir=out action=block remoteip=" + CAPTURED_ATTACKERS[UDP_SRC]["attacker_ip"]
                     ])
                 subprocess.run([
                     "powershell",
