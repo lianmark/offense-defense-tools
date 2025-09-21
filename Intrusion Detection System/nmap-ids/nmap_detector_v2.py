@@ -39,10 +39,7 @@ def start_monitor():
         with pd.WinDivert("tcp.Syn and inbound") as capture:
             for packet in capture:
                 NOW_TIME = time.time()
-
-                if packet.tcp.syn:   
-                    pass    
-                    # print(packet.src_addr,":",packet.src_port, " -> ", packet.dst_addr,":", packet.tcp.dst_port , " ", translate_protocol, " -> ", "[SYN] Seq=",packet.tcp.seq_num, " Ack=", packet.tcp.ack_num)
+                
                 if packet.tcp.syn:
                     first_seen = time.time()
                     ip = packet.src_addr
