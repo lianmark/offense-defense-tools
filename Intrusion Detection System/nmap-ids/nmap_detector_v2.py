@@ -36,7 +36,7 @@ else:
         
 def start_monitor():
     try:
-        with pd.WinDivert("tcp.Syn and inbound") as capture:
+        with pd.WinDivert("tcp.Syn") as capture:
             for packet in capture:
                 NOW_TIME = time.time()
                 
