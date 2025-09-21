@@ -1,4 +1,4 @@
-## Note: This is not a finished project and may still contain bugs under certain conditions.
+## Note: This is a small, unfinished project and may still contain bugs under certain conditions.
 ## All IPs that communicate with this PC are saved in a JSON file and monitored by this program.
 ## If an IP sends more than 100 packets within 5 seconds, an alert will be shown.
 ##
