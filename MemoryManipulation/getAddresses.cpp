@@ -1,3 +1,4 @@
+
 #include <iostream> // Include the iostream library for input/output operations
 #include <map>
 #include <istream>
@@ -84,10 +85,10 @@ int main() { // The main function, where program execution begins
     // companies.push_back("John");
     // companies.push_back("Connor");
     // cout << companies[0] << endl;
-    DWORD pid = 2196;                      // change to target PID
+    DWORD pid = 19364;                      // change to target PID
 
-    // HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
-    // if (!hProcess) { cerr << "OpenProcess failed " << GetLastError() << "\n"; return 1; }
+    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
+    if (!hProcess) { cerr << "OpenProcess failed " << GetLastError() << "\n"; return 1; }
 
     // char name[MAX_PATH];
     // DWORD nameLen = MAX_PATH;
@@ -95,9 +96,11 @@ int main() { // The main function, where program execution begins
 
     SYSTEM_INFO sysInfo;
     GetSystemInfo(&sysInfo);
-
+    vector<string> InterestingAddresses;
     MEMORY_BASIC_INFORMATION mbi;
     int target;
+    int newValue = 1000;
+    map<uintptr_t, int> INaddresses;
     while (true)
     {
     cout << "Enter target" << endl;
@@ -121,7 +124,14 @@ int main() { // The main function, where program execution begins
                             int v = *reinterpret_cast<int*>(buf.data() + i);
                             if (v == target) {
                                 uintptr_t found = (uintptr_t)mbi.BaseAddress + i;
-                                cout << hex << (void*)found << dec << "\n";
+                                // cout << hex << (void*)found << dec << "\n";
+                                uintptr_t written = 0;
+                                INaddresses[found]++;
+                                if (INaddresses[found] > 5)
+                                {
+                                    cout << "Possible Address match: " << hex << (void*)found << dec << " count=" << INaddresses[found] <<endl;
+                                    WriteProcessMemory(hProcess, (LPVOID)found, &newValue, sizeof(newValue), &written);
+                                } 
                             }
                         }
                     }
