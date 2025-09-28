@@ -1,5 +1,14 @@
-
-#include <iostream> // Include the iostream library for input/output operations
+/*
+ * Project: getAddresses / memory scanner (WIP)
+ * Author: Lian Mark
+ *
+ * Note: Beginner in C++. This project is educational / experimental.
+ * Significant portions of the code and guidance were developed with AI-assisted
+ * support (the assistant provided snippets and debugging tips).
+ *
+ * Use only in controlled lab environments and for lawful, ethical purposes.
+ */
+#include <iostream>
 #include <map>
 #include <istream>
 #include <vector>
@@ -7,84 +16,8 @@
 #include <psapi.h>
 using namespace std;
 
-// class Player{
-//     private:
-//         string name;
-//         int health;
-//     public:
-//         Player(string n, int h){
-//         name = n;
-//         health = h;
-//         }
-//     int takeDamage(int dmg){
-//         health = health - dmg;
-//     return health;
-//     }
-//     void stats(){
-//         cout << "Name chosen: " << name << " Current HP: " << health << endl; 
-//     }
-// };
-// int add(int a, int b){
-//     return a + b;
-// };
-// int subtract(int a, int b){
-//     return a - b;
-// };
-int main() { // The main function, where program execution begins
-    // string name = "Lian";
-    // cout << "Hello my name is " << name << " and I am learning c++!" << endl;
+int main() {
 
-    // int birtyear;
-    // cout << "Enter your year of birth ";
-    // cin >> birtyear;
-    // cout <<"You are:"<< 2026 - birtyear << " Years old" << endl;  
-
-    // int secretNumber;
-    // cout << "Enter secret number: " << endl;
-    // cin >>  secretNumber;
-    // if (secretNumber == 23){
-    //     cout << "You win!"<< endl;
-    // }else {
-    //     cout << "Wrong, try again."<< endl;
-    // }
-    // string input;
-    // cout << "Choose subtract or add function:";
-    // cin >> input;
-    // if(input == "subtract"){
-    //     int x;
-    //     int y;
-    //     cin >> x;
-    //     cin >> y;
-    //     cout << subtract(x, y) << endl;
-    // }
-    // if(input == "add"){
-    //     int n, r;
-    //     cin >> n;
-    //     cin >> r;
-    //     cout << add(n,r) << endl;
-    // }
-     
-    // string movies[5] = {"LOTR", "Hobbit", "It", "Aragon", "Left 4 Dead"};
-    // for(int i = 0; i < 5; i++){
-    //     cout << movies[i] << endl;
-    // }
-
-    // //step 6... i dont remember :(
-    // Player p1("Lian", 100);
-    // p1.stats();
-    // p1.takeDamage(20);
-    // p1.stats();
-
-    // Player Aragon("Knight", 200);
-    // Aragon.stats();
-    // Aragon.takeDamage(50);
-    // Aragon.stats();
-
-    // vector<string> companies;
-    // companies.push_back("Lian");
-    // companies.push_back("John");
-    // companies.push_back("Connor");
-    // cout << companies[0] << endl;
     DWORD pid = 19364;                      // change to target PID
 
     HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
