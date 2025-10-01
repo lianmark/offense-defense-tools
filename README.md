@@ -30,7 +30,7 @@ This repo is not just code — it’s my **portfolio & timeline of growth**:
 ---
 
 ## 🚀 Current Focus
-- 📖 Deepening knowledge in **SOC workflows** (Splunk, Snort, Suricata)  
+- 📖 Deepening knowledge in **SOC workflows** 
 - 🧪 Experimenting with **file hashing & AV-like tools** in C++  
 - ⚡ Writing **automation scripts in Python** for faster triage & analysis  
 - 🤖 Exploring **Raspberry Pi** for security + robotics side projects  
