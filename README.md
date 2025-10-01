@@ -47,6 +47,6 @@ The author takes no responsibility for misuse of the content provided here.
 
 ## 📬 Contact
 - 📧 **Email:** Lianmark00@outlook.com  
-- 📄 **Resume:** `docs/LianmarkResume2025.pdf`  
+- 📄 **Resume:** `Via Mail`  
 
 ---
