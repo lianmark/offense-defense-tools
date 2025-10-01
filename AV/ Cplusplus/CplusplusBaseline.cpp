@@ -1,3 +1,19 @@
+// TODO:
+// 1) Extract all computed file hashes to a persistent database file (.dat).
+//    - Output path example: "data/hashes.db" or "output/BaseScanHashes.dat"
+//    - Append mode: write one record per line: "<MD5_hex>  <full_path>\n"
+//    - Consider adding a timestamp and file size: "<MD5_hex> <size> <YYYY-MM-DD HH:MM> <full_path>"
+//    - Use a safe, atomic write pattern (write temp file then rename) to avoid
+//      corruption on crash.
+// 2) Implement fast lookup/scan against a known-malicious-hashes database.
+//    - Local DB format: plain text list of MD5 (or SHA256) one-per-line, or a
+//      simple keyed DB (SQLite) for larger datasets.
+//    - Provide a config entry for DB path, e.g. `malware_db_path = "db/bad_hashes.txt"`.
+//    - On each computed hash: check DB, log matches to a findings file (CSV or JSON).
+// 3) Support multiple hash algorithms (MD5 + SHA1 + SHA256) and format the .dat
+//    file to indicate algorithm used per record.
+//    - Example record: "SHA256:<hex> SIZE:<bytes> TIME:<iso> PATH:<full_path>"
+
 #include <iostream>    
 #include <windows.h>   
 #include <fstream>    
