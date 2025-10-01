@@ -1,5 +1,5 @@
 # 🔥 Lian Mark — Cyclus Cyber Security  
-**Cybersecurity student (HackerU, 09/2025) · Building Experience in C++ & Python for Security Engineering (Started at 09/2025)**
+**Cybersecurity student · Building Experience in C++ & Python for Security Engineering (Started at 09/2025)**
 
 [![Languages](https://img.shields.io/badge/C++-%3E%20Python-orange.svg)](#)
 [![Status](https://img.shields.io/badge/status-active-success.svg)](#)
