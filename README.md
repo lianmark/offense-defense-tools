@@ -14,7 +14,7 @@ This repository is my **public lab**: tools, experiments, IDS notes, and scripts
 
 ## 🧑‍💻 Who am I?
 - 🎓 **Cybersecurity Student (HackerU)** — started at 2025  
-- 💻 **Programmer:** C++ (beginner), Python (intermediate, scripting & automation)  
+- 💻 **Programmer:** C++ (beginner), Python (intermediate, scripting & automation) - **as for 09/2025**  
 - 🛡️ Interested in **SOC operations, IDS, malware analysis, and security engineering**  
 - ⚙️ Learning how to **build real-world tools** from scratch, document them, and share responsibly  
 
@@ -34,14 +34,6 @@ This repo is not just code — it’s my **portfolio & timeline of growth**:
 - 🧪 Experimenting with **file hashing & AV-like tools** in C++  
 - ⚡ Writing **automation scripts in Python** for faster triage & analysis  
 - 🤖 Exploring **Raspberry Pi** for security + robotics side projects  
-
----
-
-## 📈 Skills Snapshot
-- **Languages:** C++ · Python · (some C#)  
-- **Cybersecurity:** IDS (Snort/Suricata) · SOC basics · Nmap · Wireshark · Splunk  
-- **OS & Systems:** Windows internals · Linux CLI · Raspberry Pi  
-- **Interests:** Malware detection, red vs blue team labs, robotics security  
 
 ---
 
