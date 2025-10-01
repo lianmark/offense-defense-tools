@@ -9,8 +9,7 @@
 
 ## About
 I’m **Lian Mark**, a cybersecurity student and C++ beginner.  
-This repository is my personal lab: small tools, experiments, IDS notes, and scripts I create while learning SOC workflows, IDS, and security engineering.
+This repository is my public lab: small tools, experiments, IDS notes, and scripts I create while learning SOC workflows, IDS, and security engineering.
 
 ---
 
-## Repo structure
