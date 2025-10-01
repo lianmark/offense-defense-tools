@@ -16,7 +16,10 @@
 
 using namespace std; 
 
-// ------------------------------
+// ============================================================================
+// NOTE: This function particular was 100% AI-generated (for educational / reference use).
+//       Review, test, and adapt before using in production environments.
+// ============================================================================
 void computeMD5FromFile(const std::wstring &filePath) {
     FILE* fp = _wfopen(filePath.c_str(), L"rb");  // open file in binary mode
     if (!fp) {
