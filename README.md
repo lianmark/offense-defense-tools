@@ -1,4 +1,4 @@
-# ✨ Lian Mark — Cyber Security Student  
+#  Lian Mark — Cyber Security Student  
 
 [![Cybersecurity](https://img.shields.io/badge/Role-Cybersecurity%20Student-blue?style=flat-square&logo=hackaday)](#)
 [![Programming](https://img.shields.io/badge/Skills-C++%20|%20Python-green?style=flat-square&logo=codeforces)](#)
