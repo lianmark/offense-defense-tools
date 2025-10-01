@@ -107,6 +107,11 @@ void scanFolder(const wstring &folder) {
                 computeMD5FromFile(fullPath);
                 // (signature check will be added later here)
             }
+            else 
+            {
+                // unexpected case → log it for analysis
+                wcout << L"[SKIPPED] Unexpected file type: " << fullPath << endl;
+            }
         }
     
         if (!FindNextFileW(hFind, &data)) break; // move to next file
