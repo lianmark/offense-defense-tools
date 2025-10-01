@@ -142,8 +142,8 @@ void scanFolder(const wstring &folder) {
 int main() {
     SetConsoleOutputCP(CP_UTF8);  // make console support UTF-8 output
 
-    string path = "C:\\Users\\PC\\Desktop\\nscs-system\\C++ Anti-virus\\Scan_caches\\BaseScan.dat";
-    ofstream file(path, ios::binary | ios::out); // open output file (currently unused)
+    // string path = "...BaseScan.dat";
+    // ofstream file(path, ios::binary | ios::out); // open output file (currently unused)
 
     WCHAR drives[512];                       // buffer for drive letters
     DWORD len = GetLogicalDriveStringsW(512, drives); // get all drives
