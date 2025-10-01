@@ -17,7 +17,7 @@
 using namespace std; 
 
 // ============================================================================
-// NOTE: This function particular was 100% AI-generated (for educational / reference use).
+// NOTE: This particular function was 100% AI-generated (for educational / reference use).
 //       Review, test, and adapt before using in production environments.
 // ============================================================================
 void computeMD5FromFile(const std::wstring &filePath) {
