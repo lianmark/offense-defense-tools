@@ -38,9 +38,10 @@ This repo is not just code — it’s my **portfolio & timeline of growth**:
 ---
 
 ## ⚠️ Ethics & Safety
-Everything here is **for educational purposes only**.  
-Do not use offensive tools outside isolated labs/VMs.  
-Look for tags like **⚠️ VERIFY THIS IN LAB** — they mean serious caution.
+Everything in this repository is provided for educational and research purposes only.
+Do not use any code, scripts, or tools from this project to harm, damage or disrupt real systems or networks.
+All experiments should be run only in isolated lab environments or virtual machines.
+The author takes no responsibility for misuse of the content provided here.
 
 ---
 
