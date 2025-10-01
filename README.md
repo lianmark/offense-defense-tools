@@ -1,7 +1,6 @@
 # 🔥 Lian Mark — Cyclus Cyber Security  
 **Cybersecurity student (HackerU, 09/2025) · C++ Beginner**
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Languages](https://img.shields.io/badge/C++-%3E%20Python-orange.svg)](#)
 [![Status](https://img.shields.io/badge/status-active-success.svg)](#)
 
