@@ -6,9 +6,6 @@
 
 ---
 
-🛡️ **Cybersecurity Student** *(HackerU, since 09/2025)*  
-💻 **C++ & Python Programmer** — *Security Engineering Tools & Research*
-
 [![Languages](https://img.shields.io/badge/C++-%3E%20Python-orange.svg)](#)
 [![Status](https://img.shields.io/badge/status-active-success.svg)](#)
 
