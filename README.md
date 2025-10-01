@@ -13,7 +13,7 @@ This repository is my **public lab**: tools, experiments, IDS notes, and scripts
 ---
 
 ## 🧑‍💻 Who am I?
-- 🎓 **Cybersecurity Student (HackerU)** — started September 2025  
+- 🎓 **Cybersecurity Student (HackerU)** — started at 2025  
 - 💻 **Programmer:** C++ (beginner), Python (intermediate, scripting & automation)  
 - 🛡️ Interested in **SOC operations, IDS, malware analysis, and security engineering**  
 - ⚙️ Learning how to **build real-world tools** from scratch, document them, and share responsibly  
