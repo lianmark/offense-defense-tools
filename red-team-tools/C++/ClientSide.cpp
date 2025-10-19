@@ -1,3 +1,13 @@
+/*
+ * EDUCATIONAL USE ONLY — DO NOT USE ILLEGALLY
+ *
+ * This code is provided for learning and testing in controlled environments only.
+ * Do NOT use it to access, control, or damage systems or data you do not own
+ * or do not have explicit written permission to test.
+ *
+ * Unauthorized or illegal use is prohibited — you are solely responsible for
+ * any consequences. This is not legal advice.
+ */
 #include <iostream>
 #include <winsock2.h>
 #include <ws2tcpip.h>
